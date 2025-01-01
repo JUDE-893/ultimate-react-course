@@ -1,70 +1,13 @@
-# Getting Started with Create React App
+#App-v1.0 version
+In this version we've explored the concept to implementing custom context provider and useContext hook.
+--Technicaly : a custom context provider consist to create a functional component that will encapsulate all the state, state setters and all the methods.. That a context provider is meant to provide to differrent component everywhere in the tree.
+--pro : this allow data encapsulation and separation of concerns which is a could be aa crucial element in a complex app creation. It allow by then to improve the quality of the code by writting a cleaner and more easer code structor to maintain.
+--cunstom useContext Hook: technically talking it means providing a simpler method to retrieve state variable from a particular provider's context. this happens by wrapping the useContext hook inside of another method that get called each time to provide state variables to allow by then preventing rewriting over the same code.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#App version
+In this version of the project made initially by Jonas Schmidtmann through his react course The Ultimate React Course, we've tried to improve the Atomic Blog App by preventing Props Drilling.
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+--Initially The App has too many problems that were affecting not only in generally its performance but also its code quality. One of the main prblems was PROPS DRILLING; generally appears in many parrents components that had props passed it only for the purpose of lifting these props to the next children and so on..
+--Cons : - Unnecessary re-rendring of the parrent component as its recieves unused props for its direct use and also for its children as will be affected by the parent re-render. Leading in some Cases to the re-render of the whole component tree which will be simply memory waste.
+         - Low Code Quality caused by unclean code that will be hard to maintains and shared between a team
+--SOLUTION! : Implementing a Context Provider. its an aproach that allow to pass some variable value directly to  components that needs those information, everywhere in the tree without involving the parent component.
