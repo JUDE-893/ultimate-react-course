@@ -10,9 +10,9 @@ function AccountOperations() {
   const [currency, setCurrency] = useState("USD");
 
   const dispatch = useDispatch();
-  const [loan] = useSelector( (store) => {
+  const [loan,balence] = useSelector( (store) => {
     let acc = store.account;
-    return [acc.loan]
+    return [acc.loan,acc.balence]
   })
   function handleDeposit() {
     if (depositAmount > 0) dispatch(depositeAction(depositAmount,currency));
@@ -64,7 +64,7 @@ function AccountOperations() {
             value={withdrawalAmount}
             onChange={(e) => setWithdrawalAmount(+e.target.value)}
           />
-          <button onClick={handleWithdrawal} disabled={!withdrawalAmount>0}>
+          <button onClick={handleWithdrawal} disabled={!withdrawalAmount>0 || withdrawalAmount > balence}>
             Withdraw {withdrawalAmount}
           </button>
         </div>
