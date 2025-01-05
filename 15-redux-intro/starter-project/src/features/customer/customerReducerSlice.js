@@ -1,3 +1,4 @@
+import {createSlice} from '@reduxjs/toolkit';
 const initialState = {
   name: '',
   natioID: "",
@@ -5,30 +6,39 @@ const initialState = {
 }
 
 // store reducer
-export default function customerReducer(state=initialState, action) {
-
-  switch (action.type) {
-    case 'Customer/create':
-      return {...action.playLoad};
-      break;
-    case 'Customer/modify':
-      return {...state, ...action.playLoad};
-    case 'Customer/delete':
-      return  {name: '',natioID: "",createdAt: ''};
-    default:
-      return state;
+const customerReducerSlice = createSlice({
+  name : 'customer',
+  initialState,
+  reducers : {
+    create: {
+      prepare(name,natioID) {
+        console.log(name,natioID);
+        return {payload : {
+          name : name, natioID: natioID, createdAt: new Date()
+        }}
+      },
+      reducer(state,action) {
+        console.log(action);
+        state.name = action.payload.name;
+        state.natioID = action.payload.natioID;
+        state.createdAt = action.payload.createdAt;
+    }},
+    modify : {
+      prepare(name,natioID) {
+        return { payload : {name: name, natioID: natioID}}
+      },
+      reducer(state,action) {
+        state.name = action.payload.name;
+        state.natioID = action.payload.natioID;
+      }
+    },
+    delete(state,action) {
+      state.name= '';
+      state.natioID= "";
+      state.createdAt= ''
+    }
   }
-}
+})
 
-// store action creators
-export function createCustomerAction(name,natioID) {
-  if (name.length > 8 && natioID.length === 6 ) return {type: 'Customer/create', playLoad: {name: name,natioID: natioID, createdAt: new Date()}};
-}
-
-export function modifyCustomerAction(name,natioID) {
-    return {type: 'Customer/modify', playLoad: {name: name,natioID: natioID}};
-}
-
-export function deleteCustomerAction(field,value) {
-  return {type: 'Customer/delete'};
-}
+export const {create: createCustomerAction, modify:modifyCustomerAction, delete:deleteCustomerAction} = customerReducerSlice.actions;
+export default customerReducerSlice.reducer

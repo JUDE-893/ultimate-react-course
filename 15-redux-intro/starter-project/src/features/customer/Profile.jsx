@@ -3,11 +3,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import {modifyCustomerAction, deleteCustomerAction} from './customerReducerSlice';
 
 export default function Profile() {
-  const [fullName, setFullName] = useState("");
-  const [nationalId, setNationalId] = useState("");
+  const dispatch = useDispatch();
+  const [natioID,name] = useSelector( (store) => {return [store.customer.name,store.customer.natioID]})
+  const [fullName, setFullName] = useState(name);
+  const [nationalId, setNationalId] = useState(natioID);
   const [modifyn, setModifyn] = useState(false);
 
-  const dispatch = useDispatch();
 
   function handleClick() {
       dispatch(modifyCustomerAction(fullName,nationalId));
